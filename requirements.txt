@@ -1,0 +1,11 @@
+matplotlib
+requests
+xarray
+dask
+netcdf4
+pandas
+numpy
+matplotlib
+bokeh
+toolz
+cmocean
