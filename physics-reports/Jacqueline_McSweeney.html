@@ -1,0 +1,1272 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Data Validation Report for OOI Data Workshop - Physics</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-05-31"><meta name="DC.source" content="DataValidation.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Data Validation Report for OOI Data Workshop - Physics</h1><!--introduction--><p><b>evaluator:</b> Jacqueline McSweeney</p><p><b>evaluation date:</b> May 24, 2018</p><p><b>Goal of the Data Validation:</b> Look at all the CTDs from Southern Ocean Flanking Mooring A and B to acess the temporal and spatial variability of stratification.</p><div><ol><li>Diagnose the spring-neap, seasonal, and inter-annual variabilty</li><li>Link temporal variability to dynamics - Tides, Winds, Waves</li><li>Diagnose the spatial variability between moorings A and B (47 km apart)</li></ol></div><p><b>Review Summary:</b> This data validation uses all available CTD data from Flanking Moorings A and B at the Global Southern Ocean Array as well as meteorological data from the  Bulk Meteorology Instrument Package (GS01SUMO-SBD12-06-METBKA000) on the APEX Surface mooring. Our time period of interest is April 1, 2015 - December 31, 2017 (based on data availability and the science questions motivating this analysis.  Note that the met package is one of two available on the APEX surface mooring, but we choose the one with the most data within our timeperiod of interest.  We also grab data from a tide gauge at Juan Hernandez, Chile available through https://uhslc.soest.hawaii.edu/data/</p><p>Further analysis is needed to conclude the relative importance of competing dynamics.  Specifically wave data needs to be included in a dynamical analysis, as we know waves play a dominant role in this region. This report was designed to complement an analysis conducted by Justin Stopa, which focused on in situ and remote observations of waves. This initial report indicates that the data available through the Global Southern Ocean Array is adequate to meet the scientic goals of this project.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Specify the location of the data and where to save figures</a></li><li><a href="#2">Download the data from Flanking A</a></li><li><a href="#3">Download the data from Flanking B</a></li><li><a href="#4">Clean up bad data</a></li><li><a href="#5">Download tide gauge data from Juan Fernandez</a></li><li><a href="#6">Download Met Data from the Apex Surface Mooring</a></li><li><a href="#7">Plot Flanking A pcolor</a></li><li><a href="#8">Plot Flanking B pcolor</a></li><li><a href="#9">Plot a countour of temperature in time and pressure space</a></li><li><a href="#10">Define colors for the next few plots</a></li><li><a href="#11">Plot the pressure at Flanking A - whole timeseries</a></li><li><a href="#12">Plot the pressure at Flanking A - Zoom in on 11/15/15 - 1/15/16</a></li><li><a href="#13">Plot the pressure at Flanking B - whole timeseries</a></li><li><a href="#14">Plot Stratification at Flanking A - 3 years</a></li><li><a href="#15">Plot Stratification at Flanking B - 3 years</a></li><li><a href="#16">Zoom in on Stratification at Flanking A and Compare with Tides</a></li><li><a href="#17">Zoom in on Stratification at Flanking A and Compare with Winds</a></li><li><a href="#18">Comparing the temp at 130m at Flanking Moorings A and B</a></li><li><a href="#19">Calculate the distance betwen Flanking Moorings A and B</a></li></ul></div><h2 id="1">Specify the location of the data and where to save figures</h2><p>Note that the data was downloaded through a synchronous API request with a separate python script.  The netcdf files were then transferred to my local machine.  (The calculations were too heavy without the files being local)</p><pre class="codeinput">clear
+close <span class="string">all</span>
+
+basedir=<span class="string">'/Users/jmcsweeney/Documents/OOI_DataWorkshop_May_2018/'</span>;
+savedir=<span class="string">'/Users/jmcsweeney/Documents/OOI_DataWorkshop_May_2018/figs/'</span>;
+
+<span class="comment">% Deployment1</span>
+fname1=[<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOG040-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOG041-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOG042-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOG043-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOG044-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOG045-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOG046-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOG047-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOG048-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOH049-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOH050-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMA-RIM01-02-CTDMOH051-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'</span>];
+
+
+fname2=[<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOG040-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOG041-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOG042-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOG043-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOG044-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOG045-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOG046-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOG047-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOG048-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOH049-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOH050-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMA-RIM01-02-CTDMOH051-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'</span>];
+
+fname3=[<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMA-RIM01-02-CTDMOG040-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMA-RIM01-02-CTDMOG041-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMA-RIM01-02-CTDMOG042-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMA-RIM01-02-CTDMOG043-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMA-RIM01-02-CTDMOG044-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMA-RIM01-02-CTDMOG045-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMA-RIM01-02-CTDMOG046-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMA-RIM01-02-CTDMOG047-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc'</span>];
+
+
+<span class="comment">% Flanking B Deployment1</span>
+fbname1=[<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOG060-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOG061-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOG062-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOG063-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOG064-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOG065-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOG066-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOG067-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOG068-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOH069-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOH070-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0001_GS03FLMB-RIM01-02-CTDMOH071-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'</span>];
+
+
+fbname2=[<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOG060-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOG061-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOG062-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOG063-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOG064-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOG065-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOG066-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOG067-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOG068-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOH069-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOH070-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0002_GS03FLMB-RIM01-02-CTDMOH071-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'</span>];
+
+fbname3=[<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMB-RIM01-02-CTDMOG060-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMB-RIM01-02-CTDMOG061-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMB-RIM01-02-CTDMOG062-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMB-RIM01-02-CTDMOG063-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMB-RIM01-02-CTDMOG064-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMB-RIM01-02-CTDMOG065-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMB-RIM01-02-CTDMOG066-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc'</span>;<span class="keyword">...</span>
+    <span class="string">'deployment0003_GS03FLMB-RIM01-02-CTDMOG067-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc'</span>];
+</pre><h2 id="2">Download the data from Flanking A</h2><pre class="codeinput"><span class="keyword">for</span> i = 1:12
+f=[basedir <span class="string">'data/deployment1/'</span> fname1(i,:)];
+temp1(i,:)=ncread(f,<span class="string">'ctdmo_seawater_temperature'</span>);
+press1(i,:)=ncread(f,<span class="string">'ctdmo_seawater_pressure'</span>);
+sal1(i,:)=ncread(f,<span class="string">'practical_salinity'</span>);
+dens1(i,:)=ncread(f,<span class="string">'density'</span>);
+<span class="keyword">end</span>
+time1=ncread(f,<span class="string">'time'</span>); <span class="comment">% I confirmed the time arrays are the same</span>
+z=-[30, 40, 60, 90, 130, 180 250, 350, 500, 750, 1000, 1500];
+
+dn1=datenum(1900,1,1,0,0,0)+(time1/60/60/24);
+
+<span class="keyword">for</span> i = 1:12
+f=[basedir <span class="string">'data/deployment2/'</span> fname2(i,:)];
+temp2(i,:)=ncread(f,<span class="string">'ctdmo_seawater_temperature'</span>);
+press2(i,:)=ncread(f,<span class="string">'ctdmo_seawater_pressure'</span>);
+sal2(i,:)=ncread(f,<span class="string">'practical_salinity'</span>);
+dens2(i,:)=ncread(f,<span class="string">'density'</span>);
+<span class="keyword">end</span>
+time2=ncread(f,<span class="string">'time'</span>); <span class="comment">% I confirmed the time arrays are the same</span>
+z=-[30, 40, 60, 90, 130, 180 250, 350, 500, 750, 1000, 1500];
+dn2=datenum(1900,1,1,0,0,0)+(time2/60/60/24);
+
+
+<span class="keyword">for</span> i = 1:8
+f=[basedir <span class="string">'data/deployment3/'</span> fname3(i,:)];
+temp3(i,:)=ncread(f,<span class="string">'ctdmo_seawater_temperature'</span>);
+press3(i,:)=ncread(f,<span class="string">'ctdmo_seawater_pressure'</span>);
+sal3(i,:)=ncread(f,<span class="string">'practical_salinity'</span>);
+dens3(i,:)=ncread(f,<span class="string">'density'</span>);
+<span class="keyword">end</span>
+time3=ncread(f,<span class="string">'time'</span>); <span class="comment">% I confirmed the time arrays are the same</span>
+z3=-[30, 40, 60, 90, 130, 180 250, 350];
+dn3=datenum(1900,1,1,0,0,0)+(time3/60/60/24);
+</pre><h2 id="3">Download the data from Flanking B</h2><pre class="codeinput"><span class="keyword">for</span> i = 1:12
+f=[basedir <span class="string">'data/flankingB/d1/'</span> fbname1(i,:)];
+temp1b(i,:)=ncread(f,<span class="string">'ctdmo_seawater_temperature'</span>);
+press1b(i,:)=ncread(f,<span class="string">'ctdmo_seawater_pressure'</span>);
+sal1b(i,:)=ncread(f,<span class="string">'practical_salinity'</span>);
+dens1b(i,:)=ncread(f,<span class="string">'density'</span>);
+<span class="keyword">end</span>
+time1b=ncread(f,<span class="string">'time'</span>); <span class="comment">% I confirmed the time arrays are the same</span>
+zb=-[30, 40, 60, 90, 130, 180 250, 350, 500, 750, 1000, 1500];
+dn1b=datenum(1900,1,1,0,0,0)+(time1b/60/60/24);
+
+<span class="keyword">for</span> i = 1:12
+f=[basedir <span class="string">'data/flankingB/d2/'</span> fbname2(i,:)];
+temp2b(i,:)=ncread(f,<span class="string">'ctdmo_seawater_temperature'</span>);
+press2b(i,:)=ncread(f,<span class="string">'ctdmo_seawater_pressure'</span>);
+sal2b(i,:)=ncread(f,<span class="string">'practical_salinity'</span>);
+dens2b(i,:)=ncread(f,<span class="string">'density'</span>);
+<span class="keyword">end</span>
+time2b=ncread(f,<span class="string">'time'</span>); <span class="comment">% I confirmed the time arrays are the same</span>
+dn2b=datenum(1900,1,1,0,0,0)+(time2b/60/60/24);
+
+
+<span class="keyword">for</span> i = 1:8
+f=[basedir <span class="string">'data/flankingB/d3/'</span> fbname3(i,:)];
+temp3b(i,:)=ncread(f,<span class="string">'ctdmo_seawater_temperature'</span>);
+press3b(i,:)=ncread(f,<span class="string">'ctdmo_seawater_pressure'</span>);
+sal3b(i,:)=ncread(f,<span class="string">'practical_salinity'</span>);
+dens3b(i,:)=ncread(f,<span class="string">'density'</span>);
+<span class="keyword">end</span>
+time3b=ncread(f,<span class="string">'time'</span>); <span class="comment">% I confirmed the time arrays are the same</span>
+z3b=-[30, 40, 60, 90, 130, 180 250, 350];
+dn3b=datenum(1900,1,1,0,0,0)+(time3b/60/60/24);
+</pre><h2 id="4">Clean up bad data</h2><p>This clean up approach is rudimentary.  For a more rigorous analysis, the data clean-up should be more objective.  For example, a standard deviation filter or despiking could be done. Also, it is important to note that the there is bad data in the datasets that have not been removeded here (ie. Flanking B).  This is intentional to show the sort of clean up that is important and how outliers may only sometimes be obvious</p><pre class="codeinput">sal1(sal1&lt;20)=nan; sal2(sal2&lt;20)=nan; sal3(sal3&lt;20)=nan;
+temp1(:,dn1&gt;736316.395521383)=nan; press1(:,dn1&gt;736316.395521383)=nan;
+temp2(:,dn2&lt;736315.847)=nan;press2(:,dn2&lt;736315.847)=nan;
+
+temp1b(:,dn1b&gt;736316.689)=nan; press1b(:,dn1b&gt;736316.689)=nan;
+temp2b(:,dn2b&lt;736314.903)=nan; press2b(:,dn2b&lt;736314.903)=nan;
+
+temp3b(:,dn3b&lt;736667.854)=nan; press3b(:,dn3b&lt;736667.854)=nan;
+</pre><h2 id="5">Download tide gauge data from Juan Fernandez</h2><p>This hourly data was downloaded from https://uhslc.soest.hawaii.edu/data/</p><pre class="codeinput">tname=<span class="string">'/Users/jmcsweeney/Documents/OOI_DataWorkshop_May_2018/data/h021.nc'</span>;
+
+ttime=ncread(tname,<span class="string">'time'</span>); <span class="comment">%'days since 1800-01-01 00:00:00</span>
+tdn=datenum(1800,1,1,0,0,0)+(ttime);
+tsl=ncread(tname,<span class="string">'sea_level'</span>);
+
+tname=<span class="string">'/Users/jmcsweeney/Documents/OOI_DataWorkshop_May_2018/data/d021.nc'</span>;
+
+ttime1=ncread(tname,<span class="string">'time'</span>); <span class="comment">%'days since 1800-01-01 00:00:00</span>
+tdn1=datenum(1800,1,1,0,0,0)+(ttime1);
+
+tsl1=ncread(tname,<span class="string">'sea_level'</span>);
+</pre><h2 id="6">Download Met Data from the Apex Surface Mooring</h2><p>The other met package (GS01SUMO-SBD11-06-METBKA000) did not have adequate coverage for this analysis</p><pre class="codeinput">mname=[<span class="keyword">...</span>
+<span class="string">'deployment0001_GS01SUMO-SBD12-06-METBKA000-recovered_host-metbk_a_dcl_instrument_recovered_20150401T000030-20151227T111918.nc'</span>;<span class="keyword">...</span>
+<span class="string">'deployment0002_GS01SUMO-SBD12-06-METBKA000-recovered_host-metbk_a_dcl_instrument_recovered_20151214T202007-20161212T075726.nc'</span>];
+
+wtime1=ncread([basedir <span class="string">'data/met/'</span> mname(1,:)],<span class="string">'time'</span>); <span class="comment">%seconds since 1900-01-01 0:0:0</span>
+wdn1=datenum(1900,1,1,0,0,0+wtime1);
+weast1=ncread([basedir <span class="string">'data/met/'</span> mname(1,:)],<span class="string">'eastward_wind_velocity'</span>);
+wnorth1=ncread([basedir <span class="string">'data/met/'</span> mname(1,:)],<span class="string">'northward_wind_velocity'</span>);
+wspd1=sqrt(weast1.^2+wnorth1.^2);
+
+wtime2=ncread([basedir <span class="string">'data/met/'</span> mname(2,:)],<span class="string">'time'</span>); <span class="comment">%seconds since 1900-01-01 0:0:0</span>
+wdn2=datenum(1900,1,1,0,0,0+wtime2);
+weast2=ncread([basedir <span class="string">'data/met/'</span> mname(2,:)],<span class="string">'eastward_wind_velocity'</span>);
+wnorth2=ncread([basedir <span class="string">'data/met/'</span> mname(2,:)],<span class="string">'northward_wind_velocity'</span>);
+wspd2=sqrt(weast2.^2+wnorth2.^2);
+</pre><h2 id="7">Plot Flanking A pcolor</h2><pre class="codeinput">close <span class="string">all</span>
+figure(<span class="string">'position'</span>,[169 93 1247 712]);
+hax=tight_subplot(3,1,[0.05 0.1],[0.08 0.06],[0.08 0.04]);
+
+axes(hax(1))
+pcolorjw(dn1,z,temp1);
+hold <span class="string">on</span>
+pcolorjw(dn2,z,temp2);
+pcolorjw(dn3,z3,temp3);
+colorbar;
+datetick(<span class="string">'x'</span>,<span class="string">'mm/yy'</span>)
+ylabel(<span class="string">'Depth (m)'</span>);
+title([<span class="string">'Flanking Mooring A'</span> char(10) <span class="string">'Temperature'</span>])
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+set(gca,<span class="string">'xtick'</span>,datenum(2015,3:3:36,1),<span class="string">'xticklabel'</span>,[],<span class="string">'layer'</span>,<span class="string">'top'</span>);
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+caxis([2 10]);
+
+axes(hax(2))
+pcolorjw(dn1,z,sal1);
+hold <span class="string">on</span>
+pcolorjw(dn2,z,sal2);
+pcolorjw(dn3,z3,sal3);
+colorbar;
+datetick(<span class="string">'x'</span>,<span class="string">'mm/yy'</span>)
+ylabel(<span class="string">'Depth (m)'</span>);
+title(<span class="string">'Salinity'</span>)
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+caxis([34 34.6]);
+set(gca,<span class="string">'xtick'</span>,datenum(2015,3:3:36,1),<span class="string">'xticklabel'</span>,[],<span class="string">'layer'</span>,<span class="string">'top'</span>);
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+axes(hax(3))
+pcolorjw(dn1,z,dens1);
+hold <span class="string">on</span>
+pcolorjw(dn2,z,dens2);
+pcolorjw(dn3,z3,dens3);
+colorbar;
+datetick(<span class="string">'x'</span>,<span class="string">'mm/yy'</span>)
+ylabel(<span class="string">'Depth (m)'</span>);
+xlabel(<span class="string">'Time'</span>);
+title(<span class="string">'Density'</span>)
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+caxis([1024 1035]);
+set(gca,<span class="string">'xtick'</span>,datenum(2015,3:3:36,1),<span class="string">'xticklabel'</span>,datestr(datenum(2015,3:3:36,1),<span class="string">'mm/yy'</span>),<span class="string">'layer'</span>,<span class="string">'top'</span>);
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+<span class="keyword">if</span> 0
+    set(gcf,<span class="string">'PaperPositionMode'</span>,<span class="string">'auto'</span>);
+    print(gcf,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>,[savedir <span class="string">'PcolorFlankingA'</span>]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="DataValidation_01.png" style="width:1247px;height:712px;" alt=""> <h2 id="8">Plot Flanking B pcolor</h2><p>Note the bad salinity data that we didn't clean up.  Salinity spiking?</p><pre class="codeinput">close <span class="string">all</span>
+figure(<span class="string">'position'</span>,[169 93 1247 712]);
+hax=tight_subplot(3,1,[0.05 0.1],[0.08 0.06],[0.08 0.04]);
+
+axes(hax(1))
+pcolorjw(dn1b,zb,temp1b);
+hold <span class="string">on</span>
+pcolorjw(dn2b,zb,temp2b);
+pcolorjw(dn3b,z3b,temp3b);
+colorbar;
+datetick(<span class="string">'x'</span>,<span class="string">'mm/yy'</span>)
+ylabel(<span class="string">'Depth (m)'</span>);
+title([<span class="string">'Flanking Mooring B'</span> char(10) <span class="string">'Temperature'</span>])
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+set(gca,<span class="string">'xtick'</span>,datenum(2015,3:3:36,1),<span class="string">'xticklabel'</span>,[],<span class="string">'layer'</span>,<span class="string">'top'</span>);
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+caxis([2 10]);
+
+axes(hax(2))
+pcolorjw(dn1b,zb,sal1b);
+hold <span class="string">on</span>
+pcolorjw(dn2b,zb,sal2b);
+pcolorjw(dn3b,z3b,sal3b);
+colorbar;
+datetick(<span class="string">'x'</span>,<span class="string">'mm/yy'</span>)
+ylabel(<span class="string">'Depth (m)'</span>);
+title(<span class="string">'Salinity'</span>)
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+caxis([34 34.6]);
+set(gca,<span class="string">'xtick'</span>,datenum(2015,3:3:36,1),<span class="string">'xticklabel'</span>,[],<span class="string">'layer'</span>,<span class="string">'top'</span>);
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+axes(hax(3))
+pcolorjw(dn1b,zb,dens1b);
+hold <span class="string">on</span>
+pcolorjw(dn2b,zb,dens2b);
+pcolorjw(dn3b,z3b,dens3b);
+colorbar;
+datetick(<span class="string">'x'</span>,<span class="string">'mm/yy'</span>)
+ylabel(<span class="string">'Depth (m)'</span>);
+xlabel(<span class="string">'Time'</span>);
+title(<span class="string">'Density'</span>)
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+caxis([1024 1035]);
+set(gca,<span class="string">'xtick'</span>,datenum(2015,3:3:36,1),<span class="string">'xticklabel'</span>,datestr(datenum(2015,3:3:36,1),<span class="string">'mm/yy'</span>),<span class="string">'layer'</span>,<span class="string">'top'</span>);
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+<span class="keyword">if</span> 0
+    set(gcf,<span class="string">'PaperPositionMode'</span>,<span class="string">'auto'</span>);
+    print(gcf,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>,[savedir <span class="string">'PcolorFlankingB'</span>]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="DataValidation_02.png" style="width:1247px;height:712px;" alt=""> <h2 id="9">Plot a countour of temperature in time and pressure space</h2><p>not a good look at this data because this contour code doesn't handle gappy data well</p><pre class="codeinput">figure;
+contour(repmat(dn1,1,12)',-press1,temp1)
+hold <span class="string">on</span>
+contour(repmat(dn2,1,12)',-press2,temp2)
+hold <span class="string">on</span>
+contour(repmat(dn3,1,8)',-press3,temp3)
+datetick(<span class="string">'x'</span>,<span class="string">'mm/yy'</span>)
+xlabel(<span class="string">'time'</span>)
+ylabel(<span class="string">'pressure'</span>)
+colorbar
+title(<span class="string">'Temperature'</span>)
+</pre><img vspace="5" hspace="5" src="DataValidation_03.png" style="width:560px;height:420px;" alt=""> <h2 id="10">Define colors for the next few plots</h2><pre class="codeinput">clrs(1:12,1:3)=nan;
+clrs(1,:)=hex2rgb(<span class="string">'#7A6F9B'</span>); <span class="comment">%purple</span>
+clrs(2,:)=hex2rgb(<span class="string">'#C94277'</span>); <span class="comment">% pink</span>
+clrs(3,:)=hex2rgb(<span class="string">'#D499B9'</span>); <span class="comment">% light pink</span>
+clrs(4,:)=hex2rgb(<span class="string">'#0F5257'</span>); <span class="comment">% dark green</span>
+clrs(5,:)=hex2rgb(<span class="string">'#20BF55'</span>); <span class="comment">% bright green</span>
+clrs(6,:)=hex2rgb(<span class="string">'#01BAEF'</span>); <span class="comment">% bright blue</span>
+clrs(7,:)=hex2rgb(<span class="string">'#DDE392'</span>); <span class="comment">% light green/yellow</span>
+clrs(8,:)=hex2rgb(<span class="string">'#537BBC'</span>); <span class="comment">% light blue</span>
+clrs(9,:)=hex2rgb(<span class="string">'#FF8E5E'</span>); <span class="comment">% orange</span>
+clrs(10,:)=hex2rgb(<span class="string">'#839788'</span>); <span class="comment">% light green</span>
+clrs(11,:)=hex2rgb(<span class="string">'#9A6D38'</span>); <span class="comment">% brown</span>
+clrs(12,:)=hex2rgb(<span class="string">'#0D1B2A'</span>); <span class="comment">% near black</span>
+</pre><h2 id="11">Plot the pressure at Flanking A - whole timeseries</h2><pre class="codeinput">close <span class="string">all</span>
+
+figure(<span class="string">'position'</span>,[5 291 1436 514])
+set(gca,<span class="string">'position'</span>,[0.0389972144846797  0.11   0.935933147632312      0.815]);
+<span class="keyword">for</span> i= 1:12
+    h(i)=plot(dn1,press1(i,:),<span class="string">'-'</span>,<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    plot(dn2,press2(i,:),<span class="string">'-'</span>,<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">try</span>
+        plot(dn3,press3(i,:),<span class="string">'-'</span>,<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">catch</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+ylabel(<span class="string">'Pressure (dbar)'</span>);
+xlabel(<span class="string">'Time'</span>);
+title(<span class="string">'Pressure at Flanking Mooring A'</span>)
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+leg=legend(gca,h,num2str(z'));
+set(leg,<span class="string">'box'</span>,<span class="string">'on'</span>,<span class="string">'position'</span>,[0.86176880222825   <span class="keyword">...</span>
+    0.466787992476641        0.0515320334261838         0.380350194552529]);
+set(gca,<span class="string">'xtick'</span>,datenum(2015,3:3:36,1),<span class="string">'xticklabel'</span>,datestr(datenum(2015,3:3:36,1),<span class="string">'mm/yy'</span>));
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+<span class="keyword">if</span> 0
+    set(gcf,<span class="string">'PaperPositionMode'</span>,<span class="string">'auto'</span>);
+    print(gcf,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>,[savedir <span class="string">'PressTimeseries_FlankingA_3yrs'</span>]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="DataValidation_04.png" style="width:1436px;height:514px;" alt=""> <h2 id="12">Plot the pressure at Flanking A - Zoom in on 11/15/15 - 1/15/16</h2><pre class="codeinput">close <span class="string">all</span>
+
+figure(<span class="string">'position'</span>,[5 291 1436 514])
+set(gca,<span class="string">'position'</span>,[0.0389972144846797  0.11   0.935933147632312      0.815]);
+<span class="keyword">for</span> i= 1:12
+    h(i)=plot(dn1,press1(i,:),<span class="string">'-'</span>,<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    plot(dn2,press2(i,:),<span class="string">'-'</span>,<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">try</span>
+        plot(dn3,press3(i,:),<span class="string">'-'</span>,<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">catch</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+ylabel(<span class="string">'Pressure (dbar)'</span>);
+xlabel(<span class="string">'Time'</span>);
+title(<span class="string">'Pressure at Flanking Mooring A'</span>)
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+leg=legend(gca,h,num2str(z'));
+set(leg,<span class="string">'box'</span>,<span class="string">'on'</span>,<span class="string">'position'</span>,[0.86176880222825   <span class="keyword">...</span>
+    0.466787992476641        0.0515320334261838         0.380350194552529]);
+set(gca,<span class="string">'xtick'</span>,datenum(2015,11,1:14:300),<span class="string">'xticklabel'</span>,datestr(datenum(2015,11,1:14:300),<span class="string">'mm/dd/yy'</span>));
+xaxis(datenum(2015,11,15),datenum(2016,1,15));
+yaxis(0, 300);
+
+<span class="keyword">if</span> 0
+    set(gcf,<span class="string">'PaperPositionMode'</span>,<span class="string">'auto'</span>);
+    print(gcf,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>,[savedir <span class="string">'PressTimeseries_FlankingA_3yrs'</span>]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="DataValidation_05.png" style="width:1436px;height:514px;" alt=""> <h2 id="13">Plot the pressure at Flanking B - whole timeseries</h2><pre class="codeinput">close <span class="string">all</span>
+
+figure(<span class="string">'position'</span>,[5 291 1436 514])
+set(gca,<span class="string">'position'</span>,[0.0389972144846797  0.11   0.935933147632312      0.815]);
+<span class="keyword">for</span> i= 1:12
+    h(i)=plot(dn1b,press1b(i,:),<span class="string">'-'</span>,<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    plot(dn2b,press2b(i,:),<span class="string">'-'</span>,<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">try</span>
+        plot(dn3b,press3b(i,:),<span class="string">'-'</span>,<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">catch</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+ylabel(<span class="string">'Pressure (dbar)'</span>);
+xlabel(<span class="string">'Time'</span>);
+title(<span class="string">'Pressure at Flanking Mooring B'</span>)
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+leg=legend(gca,h,num2str(z'));
+set(leg,<span class="string">'box'</span>,<span class="string">'on'</span>,<span class="string">'position'</span>,[0.86176880222825   <span class="keyword">...</span>
+    0.466787992476641        0.0515320334261838         0.380350194552529]);
+set(gca,<span class="string">'xtick'</span>,datenum(2015,3:3:36,1),<span class="string">'xticklabel'</span>,datestr(datenum(2015,3:3:36,1),<span class="string">'mm/yy'</span>));
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+<span class="keyword">if</span> 0
+    set(gcf,<span class="string">'PaperPositionMode'</span>,<span class="string">'auto'</span>);
+    print(gcf,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>,[savedir <span class="string">'PressTimeseries_FlankingB_3yrs_clean'</span>]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="DataValidation_06.png" style="width:1436px;height:514px;" alt=""> <h2 id="14">Plot Stratification at Flanking A - 3 years</h2><pre class="codeinput">close <span class="string">all</span>
+
+figure(<span class="string">'position'</span>,[5 291 1436 514])
+set(gca,<span class="string">'position'</span>,[0.0389972144846797  0.11   0.935933147632312      0.815]);
+<span class="keyword">for</span> i= 1:12
+    h(i)=plot(dn1,temp1(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    plot(dn2,temp2(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">try</span>
+        plot(dn3,temp3(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">catch</span>
+    <span class="keyword">end</span>
+    <span class="keyword">end</span>
+ylabel(<span class="string">'Temp'</span>);
+xlabel(<span class="string">'Time'</span>);
+title(<span class="string">'Temperature at Flanking Mooring A'</span>)
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+leg=legend(gca,h,num2str(z'));
+set(leg,<span class="string">'box'</span>,<span class="string">'on'</span>,<span class="string">'position'</span>,[0.800487465180897   <span class="keyword">...</span>
+    0.118538965239286        0.0515320334261838         0.380350194552529]);
+set(gca,<span class="string">'xtick'</span>,datenum(2015,3:3:36,1),<span class="string">'xticklabel'</span>,datestr(datenum(2015,3:3:36,1),<span class="string">'mm/yy'</span>));
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+yaxis(2,9.5);
+
+<span class="keyword">if</span> 0
+    set(gcf,<span class="string">'PaperPositionMode'</span>,<span class="string">'auto'</span>);
+    print(gcf,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>,[savedir <span class="string">'TempTimeseries_FlankingA_3yrs'</span>]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="DataValidation_07.png" style="width:1436px;height:514px;" alt=""> <h2 id="15">Plot Stratification at Flanking B - 3 years</h2><pre class="codeinput">close <span class="string">all</span>
+
+figure(<span class="string">'position'</span>,[5 291 1436 514])
+set(gca,<span class="string">'position'</span>,[0.0389972144846797  0.11   0.935933147632312      0.815]);
+<span class="keyword">for</span> i= 1:12
+    h(i)=plot(dn1b,temp1b(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    plot(dn2b,temp2b(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">try</span>
+        plot(dn3b,temp3b(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">catch</span>
+    <span class="keyword">end</span>
+    <span class="keyword">end</span>
+ylabel(<span class="string">'Temp'</span>);
+xlabel(<span class="string">'Time'</span>);
+title(<span class="string">'Temperature at Flanking Mooring B'</span>)
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+leg=legend(gca,h,num2str(z'));
+set(leg,<span class="string">'box'</span>,<span class="string">'on'</span>,<span class="string">'position'</span>,[ 0.787256267409309        <span class="keyword">...</span>
+    0.1127023893638      0.0515320334261838         0.380350194552529]);
+set(gca,<span class="string">'xtick'</span>,datenum(2015,3:3:36,1),<span class="string">'xticklabel'</span>,datestr(datenum(2015,3:3:36,1),<span class="string">'mm/yy'</span>));
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+yaxis(2,9.5);
+
+<span class="keyword">if</span> 0
+    set(gcf,<span class="string">'PaperPositionMode'</span>,<span class="string">'auto'</span>);
+    print(gcf,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>,[savedir <span class="string">'TempTimeseries_FlankingB_3yrs'</span>]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="DataValidation_08.png" style="width:1436px;height:514px;" alt=""> <h2 id="16">Zoom in on Stratification at Flanking A and Compare with Tides</h2><pre class="codeinput">close <span class="string">all</span>
+
+figure(<span class="string">'position'</span>,[5 291 1436 514])
+hax=tight_subplot(2,1,[0.15 0.1],[0.08 0.06],[0.06 0.02]);
+axes(hax(1));
+plot(tdn,tsl,<span class="string">'k'</span>,<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>;
+plot(tdn1,tsl1,<span class="string">'r'</span>,<span class="string">'linewidth'</span>,2);
+xaxis(datenum(2016,4,1),datenum(2016,7,1));
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>,<span class="string">'xtick'</span>,datenum(2016,2,1:7:160),<span class="keyword">...</span>
+    <span class="string">'xticklabel'</span>,datestr(datenum(2016,2,1:7:160),<span class="string">'mm/dd'</span>));
+ylabel(<span class="string">'Sea Level (mm)'</span>);
+title(<span class="string">'Sea Level at Juan Fernandez (Chile)'</span>)
+
+
+axes(hax(2));
+<span class="keyword">for</span> i= 1:12
+    h(i)=plot(dn1,temp1(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    plot(dn2,temp2(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">try</span>
+        plot(dn3,temp3(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">catch</span>
+    <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="comment">% ylabel('Temp');</span>
+xlabel(<span class="string">'Time'</span>);
+title(<span class="string">'Temperature at Flanking Mooring A'</span>)
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+leg=legend(gca,h,num2str(z'));
+set(leg,<span class="string">'box'</span>,<span class="string">'on'</span>,<span class="string">'position'</span>,[0.0651114206126513   <span class="keyword">...</span>
+    0.0971381870291696        0.0515320334261839         0.380350194552529]);
+set(gca,<span class="string">'xtick'</span>,datenum(2016,2,1:7:160),<span class="string">'xticklabel'</span>,datestr(datenum(2016,2,1:7:160),<span class="string">'mm/dd'</span>));
+xaxis(datenum(2016,4,1),datenum(2016,7,1));
+
+set(hax(1),<span class="string">'position'</span>,[  0.06         0.809338521400778                      0.92         0.138132295719844]);
+set(hax(2),<span class="string">'position'</span>,[ 0.06                      0.08                      0.92         0.626225680933852]);
+
+<span class="keyword">if</span> 0
+    set(gcf,<span class="string">'PaperPositionMode'</span>,<span class="string">'auto'</span>);
+    print(gcf,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>,[savedir <span class="string">'TidesTempTimeseries_FlankingA_2mos'</span>]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="DataValidation_09.png" style="width:1436px;height:514px;" alt=""> <h2 id="17">Zoom in on Stratification at Flanking A and Compare with Winds</h2><pre class="codeinput">close <span class="string">all</span>
+
+figure(<span class="string">'position'</span>,[5 291 1436 514])
+hax=tight_subplot(2,1,[0.15 0.1],[0.08 0.06],[0.06 0.02]);
+axes(hax(1));
+plot(wdn1,wspd1,<span class="string">'.k'</span>); hold <span class="string">on</span>
+plot(wdn2,wspd2,<span class="string">'.k'</span>);
+yaxis(0,22);
+ xaxis(datenum(2016,4,1),datenum(2016,7,1));
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>,<span class="string">'xtick'</span>,datenum(2016,2,1:7:160),<span class="keyword">...</span>
+    <span class="string">'xticklabel'</span>,datestr(datenum(2016,2,1:7:160),<span class="string">'mm/dd'</span>));
+title(<span class="string">'Wind Speed (m/s) at Apex Surface Mooring'</span>);
+
+axes(hax(2));
+<span class="keyword">for</span> i= 1:12
+    h(i)=plot(dn1,temp1(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    plot(dn2,temp2(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">try</span>
+        plot(dn3,temp3(i,:),<span class="string">'color'</span>,clrs(i,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+    <span class="keyword">catch</span>
+    <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="comment">% ylabel('Temp');</span>
+xlabel(<span class="string">'Time'</span>);
+title(<span class="string">'Temperature at Flanking Mooring A'</span>)
+set(gca,<span class="string">'fontsize'</span>,14,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+leg=legend(gca,h,num2str(z'));
+set(leg,<span class="string">'box'</span>,<span class="string">'on'</span>,<span class="string">'position'</span>,[0.0651114206126513   <span class="keyword">...</span>
+    0.0971381870291696        0.0515320334261839         0.380350194552529]);
+set(gca,<span class="string">'xtick'</span>,datenum(2016,2,1:7:160),<span class="string">'xticklabel'</span>,datestr(datenum(2016,2,1:7:160),<span class="string">'mm/dd'</span>));
+xaxis(datenum(2016,4,1),datenum(2016,7,1));
+
+set(hax(1),<span class="string">'position'</span>,[  0.06         0.809338521400778                      0.92         0.138132295719844]);
+set(hax(2),<span class="string">'position'</span>,[ 0.06                      0.08                      0.92         0.626225680933852]);
+
+<span class="keyword">if</span> 0
+    set(gcf,<span class="string">'PaperPositionMode'</span>,<span class="string">'auto'</span>);
+    print(gcf,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>,[savedir <span class="string">'WindTempTimeseries_FlankingA_2mos'</span>]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="DataValidation_10.png" style="width:1436px;height:514px;" alt=""> <h2 id="18">Comparing the temp at 130m at Flanking Moorings A and B</h2><pre class="codeinput">close <span class="string">all</span>
+figure(<span class="string">'position'</span>,[5 291 1436 514])
+set(gca,<span class="string">'position'</span>,[0.0626740947075209  0.130350194552529   0.892061281337047      0.794649805447471]);
+i=5;
+h(1)=plot(dn1,temp1(i,:),<span class="string">'color'</span>,clrs(12,:),<span class="string">'linewidth'</span>,2); hold <span class="string">on</span>
+h(2)=plot(dn1b,temp1b(i,:),<span class="string">'color'</span>,clrs(2,:),<span class="string">'linewidth'</span>,2);
+
+ylabel(<span class="string">'Temp'</span>);
+xlabel(<span class="string">'Time'</span>);
+title(<span class="string">'Temperatures at 130m depth - A and B Flanking Moorings'</span>)
+set(gca,<span class="string">'fontsize'</span>,20,<span class="string">'fontweight'</span>,<span class="string">'bold'</span>)
+
+set(gca,<span class="string">'xtick'</span>,datenum(2015,1,1:7:2400),<span class="string">'xticklabel'</span>,datestr(datenum(2015,1,1:7:2400),<span class="string">'mm/dd/yy'</span>));
+xaxis(datenum(2015,4,1),datenum(2015,5,1));
+<span class="comment">% xaxis(datenum(2015,4,1),datenum(2015,4,15));</span>
+
+leg=legend([h(1) h(2)],[<span class="string">'A'</span>;<span class="string">'B'</span>]);
+
+<span class="keyword">if</span> 0
+    set(gcf,<span class="string">'PaperPositionMode'</span>,<span class="string">'auto'</span>);
+    print(gcf,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>,[savedir <span class="string">'AvsB_1mo'</span>]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="DataValidation_11.png" style="width:1436px;height:514px;" alt=""> <h2 id="19">Calculate the distance betwen Flanking Moorings A and B</h2><pre class="codeinput">disp([<span class="string">'Distance between Flanking Moorings A and B = '</span> <span class="keyword">...</span>
+    num2str(sw_dist([-54.104, -54.08],[-89.654, -88.932],<span class="string">'km'</span>),4)  <span class="string">' km'</span>]);
+</pre><pre class="codeoutput">Distance between Flanking Moorings A and B = 47.13 km
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Data Validation Report for OOI Data Workshop - Physics
+% 
+% *evaluator:* Jacqueline McSweeney                                             
+% 
+% *evaluation date:* May 24, 2018 
+% 
+%
+% 
+% *Goal of the Data Validation:*
+% Look at all the CTDs from Southern Ocean Flanking Mooring A and B to acess 
+% the temporal and spatial variability of stratification.
+% 
+% # Diagnose the spring-neap, seasonal, and inter-annual variabilty 
+% # Link temporal variability to dynamics - Tides, Winds, Waves 
+% # Diagnose the spatial variability between moorings A and B (47 km apart)
+% 
+% 
+% *Review Summary:* 
+% This data validation uses all available CTD data from Flanking Moorings A
+% and B at the Global Southern Ocean Array as well as meteorological data from 
+% the  Bulk Meteorology Instrument Package (GS01SUMO-SBD12-06-METBKA000) on
+% the APEX Surface mooring. Our time period of interest is April 1, 2015
+% - December 31, 2017 (based on data availability and the science questions
+% motivating this analysis.  Note that the met package is one of two 
+% available on the APEX surface mooring, but we choose the one with the most 
+% data within our timeperiod of interest.  We also grab data from a 
+% tide gauge at Juan Hernandez, Chile available through https://uhslc.soest.hawaii.edu/data/
+%  
+% Further analysis is needed to conclude the relative importance of
+% competing dynamics.  Specifically wave data needs to be included in a 
+% dynamical analysis, as we know waves play a dominant role in this region. 
+% This report was designed to complement an analysis conducted by Justin Stopa,
+% which focused on in situ and remote observations of waves.
+% This initial report indicates that the data available through the Global 
+% Southern Ocean Array is adequate to meet the scientic goals of this project.
+
+
+
+
+%% Specify the location of the data and where to save figures 
+% Note that the data was downloaded through a synchronous API request with
+% a separate python script.  The netcdf files were then transferred to my 
+% local machine.  (The calculations were too heavy without the files being local)   
+
+clear  
+close all 
+
+basedir='/Users/jmcsweeney/Documents/OOI_DataWorkshop_May_2018/';
+savedir='/Users/jmcsweeney/Documents/OOI_DataWorkshop_May_2018/figs/';
+
+% Deployment1
+fname1=[...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOG040-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc';...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOG041-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc';...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOG042-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc';...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOG043-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc';...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOG044-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc';...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOG045-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc';...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOG046-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc';...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOG047-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc';...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOG048-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc';...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOH049-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc';...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOH050-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc';...
+    'deployment0001_GS03FLMA-RIM01-02-CTDMOH051-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151218T123001.nc'];
+
+
+fname2=[...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOG040-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc';...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOG041-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc';...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOG042-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc';...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOG043-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc';...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOG044-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc';...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOG045-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc';...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOG046-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc';...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOG047-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc';...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOG048-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc';...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOH049-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc';...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOH050-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc';...
+    'deployment0002_GS03FLMA-RIM01-02-CTDMOH051-recovered_inst-ctdmo_ghqr_instrument_recovered_20151217T194501-20161206T093001.nc'];
+
+fname3=[...
+    'deployment0003_GS03FLMA-RIM01-02-CTDMOG040-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc';...
+    'deployment0003_GS03FLMA-RIM01-02-CTDMOG041-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc';...
+    'deployment0003_GS03FLMA-RIM01-02-CTDMOG042-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc';...
+    'deployment0003_GS03FLMA-RIM01-02-CTDMOG043-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc';...
+    'deployment0003_GS03FLMA-RIM01-02-CTDMOG044-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc';...
+    'deployment0003_GS03FLMA-RIM01-02-CTDMOG045-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc';...
+    'deployment0003_GS03FLMA-RIM01-02-CTDMOG046-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc';...
+    'deployment0003_GS03FLMA-RIM01-02-CTDMOG047-recovered_inst-ctdmo_ghqr_instrument_recovered_20161201T193001-20171129T234501.nc'];
+
+
+% Flanking B Deployment1
+fbname1=[...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOG060-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc';...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOG061-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc';...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOG062-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc';...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOG063-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc';...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOG064-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc';...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOG065-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc';...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOG066-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc';...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOG067-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc';...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOG068-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc';...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOH069-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc';...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOH070-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc';...
+    'deployment0001_GS03FLMB-RIM01-02-CTDMOH071-recovered_inst-ctdmo_ghqr_instrument_recovered_20150401T000001-20151219T183001.nc'];
+
+
+fbname2=[...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOG060-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc';...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOG061-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc';...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOG062-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc';...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOG063-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc';...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOG064-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc';...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOG065-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc';...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOG066-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc';...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOG067-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc';...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOG068-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc';...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOH069-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc';...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOH070-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc';...
+    'deployment0002_GS03FLMB-RIM01-02-CTDMOH071-recovered_inst-ctdmo_ghqr_instrument_recovered_20151216T194501-20161205T113001.nc'];
+
+fbname3=[...
+    'deployment0003_GS03FLMB-RIM01-02-CTDMOG060-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc';...
+    'deployment0003_GS03FLMB-RIM01-02-CTDMOG061-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc';...
+    'deployment0003_GS03FLMB-RIM01-02-CTDMOG062-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc';...
+    'deployment0003_GS03FLMB-RIM01-02-CTDMOG063-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc';...
+    'deployment0003_GS03FLMB-RIM01-02-CTDMOG064-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc';...
+    'deployment0003_GS03FLMB-RIM01-02-CTDMOG065-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc';...
+    'deployment0003_GS03FLMB-RIM01-02-CTDMOG066-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc';...
+    'deployment0003_GS03FLMB-RIM01-02-CTDMOG067-recovered_inst-ctdmo_ghqr_instrument_recovered_20161203T191501-20171129T234501.nc'];
+
+
+%% Download the data from Flanking A 
+for i = 1:12
+f=[basedir 'data/deployment1/' fname1(i,:)]; 
+temp1(i,:)=ncread(f,'ctdmo_seawater_temperature');
+press1(i,:)=ncread(f,'ctdmo_seawater_pressure');
+sal1(i,:)=ncread(f,'practical_salinity');
+dens1(i,:)=ncread(f,'density');
+end
+time1=ncread(f,'time'); % I confirmed the time arrays are the same 
+z=-[30, 40, 60, 90, 130, 180 250, 350, 500, 750, 1000, 1500];
+
+dn1=datenum(1900,1,1,0,0,0)+(time1/60/60/24);
+
+for i = 1:12
+f=[basedir 'data/deployment2/' fname2(i,:)]; 
+temp2(i,:)=ncread(f,'ctdmo_seawater_temperature');
+press2(i,:)=ncread(f,'ctdmo_seawater_pressure');
+sal2(i,:)=ncread(f,'practical_salinity');
+dens2(i,:)=ncread(f,'density');
+end
+time2=ncread(f,'time'); % I confirmed the time arrays are the same 
+z=-[30, 40, 60, 90, 130, 180 250, 350, 500, 750, 1000, 1500];
+dn2=datenum(1900,1,1,0,0,0)+(time2/60/60/24);
+
+
+for i = 1:8
+f=[basedir 'data/deployment3/' fname3(i,:)]; 
+temp3(i,:)=ncread(f,'ctdmo_seawater_temperature');
+press3(i,:)=ncread(f,'ctdmo_seawater_pressure');
+sal3(i,:)=ncread(f,'practical_salinity');
+dens3(i,:)=ncread(f,'density');
+end
+time3=ncread(f,'time'); % I confirmed the time arrays are the same 
+z3=-[30, 40, 60, 90, 130, 180 250, 350];
+dn3=datenum(1900,1,1,0,0,0)+(time3/60/60/24);
+
+%%  Download the data from Flanking B
+for i = 1:12
+f=[basedir 'data/flankingB/d1/' fbname1(i,:)]; 
+temp1b(i,:)=ncread(f,'ctdmo_seawater_temperature');
+press1b(i,:)=ncread(f,'ctdmo_seawater_pressure');
+sal1b(i,:)=ncread(f,'practical_salinity');
+dens1b(i,:)=ncread(f,'density');
+end
+time1b=ncread(f,'time'); % I confirmed the time arrays are the same 
+zb=-[30, 40, 60, 90, 130, 180 250, 350, 500, 750, 1000, 1500];
+dn1b=datenum(1900,1,1,0,0,0)+(time1b/60/60/24);
+
+for i = 1:12
+f=[basedir 'data/flankingB/d2/' fbname2(i,:)]; 
+temp2b(i,:)=ncread(f,'ctdmo_seawater_temperature');
+press2b(i,:)=ncread(f,'ctdmo_seawater_pressure');
+sal2b(i,:)=ncread(f,'practical_salinity');
+dens2b(i,:)=ncread(f,'density');
+end
+time2b=ncread(f,'time'); % I confirmed the time arrays are the same 
+dn2b=datenum(1900,1,1,0,0,0)+(time2b/60/60/24);
+
+
+for i = 1:8
+f=[basedir 'data/flankingB/d3/' fbname3(i,:)]; 
+temp3b(i,:)=ncread(f,'ctdmo_seawater_temperature');
+press3b(i,:)=ncread(f,'ctdmo_seawater_pressure');
+sal3b(i,:)=ncread(f,'practical_salinity');
+dens3b(i,:)=ncread(f,'density');
+end
+time3b=ncread(f,'time'); % I confirmed the time arrays are the same 
+z3b=-[30, 40, 60, 90, 130, 180 250, 350];
+dn3b=datenum(1900,1,1,0,0,0)+(time3b/60/60/24);
+
+%% Clean up bad data 
+% This clean up approach is rudimentary.  For a more rigorous analysis, the
+% data clean-up should be more objective.  For example, a standard
+% deviation filter or despiking could be done. Also, it is important to note 
+% that the there is bad data in the datasets that have not been removeded
+% here (ie. Flanking B).  This is intentional to show the sort of clean up
+% that is important and how outliers may only sometimes be obvious  
+
+sal1(sal1<20)=nan; sal2(sal2<20)=nan; sal3(sal3<20)=nan;
+temp1(:,dn1>736316.395521383)=nan; press1(:,dn1>736316.395521383)=nan;
+temp2(:,dn2<736315.847)=nan;press2(:,dn2<736315.847)=nan;
+
+temp1b(:,dn1b>736316.689)=nan; press1b(:,dn1b>736316.689)=nan;
+temp2b(:,dn2b<736314.903)=nan; press2b(:,dn2b<736314.903)=nan;
+
+temp3b(:,dn3b<736667.854)=nan; press3b(:,dn3b<736667.854)=nan;
+
+%% Download tide gauge data from Juan Fernandez 
+% This hourly data was downloaded from https://uhslc.soest.hawaii.edu/data/ 
+tname='/Users/jmcsweeney/Documents/OOI_DataWorkshop_May_2018/data/h021.nc';
+
+ttime=ncread(tname,'time'); %'days since 1800-01-01 00:00:00
+tdn=datenum(1800,1,1,0,0,0)+(ttime);
+tsl=ncread(tname,'sea_level');
+
+tname='/Users/jmcsweeney/Documents/OOI_DataWorkshop_May_2018/data/d021.nc';
+
+ttime1=ncread(tname,'time'); %'days since 1800-01-01 00:00:00
+tdn1=datenum(1800,1,1,0,0,0)+(ttime1);
+
+tsl1=ncread(tname,'sea_level');
+
+%% Download Met Data from the Apex Surface Mooring  
+% The other met package (GS01SUMO-SBD11-06-METBKA000) did not have adequate
+% coverage for this analysis 
+
+mname=[...
+'deployment0001_GS01SUMO-SBD12-06-METBKA000-recovered_host-metbk_a_dcl_instrument_recovered_20150401T000030-20151227T111918.nc';...
+'deployment0002_GS01SUMO-SBD12-06-METBKA000-recovered_host-metbk_a_dcl_instrument_recovered_20151214T202007-20161212T075726.nc'];
+
+wtime1=ncread([basedir 'data/met/' mname(1,:)],'time'); %seconds since 1900-01-01 0:0:0
+wdn1=datenum(1900,1,1,0,0,0+wtime1);
+weast1=ncread([basedir 'data/met/' mname(1,:)],'eastward_wind_velocity'); 
+wnorth1=ncread([basedir 'data/met/' mname(1,:)],'northward_wind_velocity'); 
+wspd1=sqrt(weast1.^2+wnorth1.^2);
+
+wtime2=ncread([basedir 'data/met/' mname(2,:)],'time'); %seconds since 1900-01-01 0:0:0
+wdn2=datenum(1900,1,1,0,0,0+wtime2);
+weast2=ncread([basedir 'data/met/' mname(2,:)],'eastward_wind_velocity'); 
+wnorth2=ncread([basedir 'data/met/' mname(2,:)],'northward_wind_velocity'); 
+wspd2=sqrt(weast2.^2+wnorth2.^2);
+
+
+
+%% Plot Flanking A pcolor
+close all 
+figure('position',[169 93 1247 712]);
+hax=tight_subplot(3,1,[0.05 0.1],[0.08 0.06],[0.08 0.04]);
+
+axes(hax(1))
+pcolorjw(dn1,z,temp1);
+hold on 
+pcolorjw(dn2,z,temp2);
+pcolorjw(dn3,z3,temp3);
+colorbar; 
+datetick('x','mm/yy')
+ylabel('Depth (m)');
+title(['Flanking Mooring A' char(10) 'Temperature'])
+set(gca,'fontsize',14,'fontweight','bold')
+set(gca,'xtick',datenum(2015,3:3:36,1),'xticklabel',[],'layer','top');
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+caxis([2 10]);
+
+axes(hax(2))
+pcolorjw(dn1,z,sal1);
+hold on 
+pcolorjw(dn2,z,sal2);
+pcolorjw(dn3,z3,sal3);
+colorbar; 
+datetick('x','mm/yy')
+ylabel('Depth (m)');
+title('Salinity')
+set(gca,'fontsize',14,'fontweight','bold')
+caxis([34 34.6]);
+set(gca,'xtick',datenum(2015,3:3:36,1),'xticklabel',[],'layer','top');
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+axes(hax(3))
+pcolorjw(dn1,z,dens1);
+hold on 
+pcolorjw(dn2,z,dens2);
+pcolorjw(dn3,z3,dens3);
+colorbar; 
+datetick('x','mm/yy')
+ylabel('Depth (m)');
+xlabel('Time');
+title('Density')
+set(gca,'fontsize',14,'fontweight','bold')
+caxis([1024 1035]);
+set(gca,'xtick',datenum(2015,3:3:36,1),'xticklabel',datestr(datenum(2015,3:3:36,1),'mm/yy'),'layer','top');
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+if 0
+    set(gcf,'PaperPositionMode','auto');
+    print(gcf,'-dpng','-r300',[savedir 'PcolorFlankingA']);
+end 
+
+
+%% Plot Flanking B pcolor
+% Note the bad salinity data that we didn't clean up.  Salinity spiking? 
+
+close all 
+figure('position',[169 93 1247 712]);
+hax=tight_subplot(3,1,[0.05 0.1],[0.08 0.06],[0.08 0.04]);
+
+axes(hax(1))
+pcolorjw(dn1b,zb,temp1b);
+hold on 
+pcolorjw(dn2b,zb,temp2b);
+pcolorjw(dn3b,z3b,temp3b);
+colorbar; 
+datetick('x','mm/yy')
+ylabel('Depth (m)');
+title(['Flanking Mooring B' char(10) 'Temperature'])
+set(gca,'fontsize',14,'fontweight','bold')
+set(gca,'xtick',datenum(2015,3:3:36,1),'xticklabel',[],'layer','top');
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+caxis([2 10]);
+
+axes(hax(2))
+pcolorjw(dn1b,zb,sal1b);
+hold on 
+pcolorjw(dn2b,zb,sal2b);
+pcolorjw(dn3b,z3b,sal3b);
+colorbar; 
+datetick('x','mm/yy')
+ylabel('Depth (m)');
+title('Salinity')
+set(gca,'fontsize',14,'fontweight','bold')
+caxis([34 34.6]);
+set(gca,'xtick',datenum(2015,3:3:36,1),'xticklabel',[],'layer','top');
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+axes(hax(3))
+pcolorjw(dn1b,zb,dens1b);
+hold on 
+pcolorjw(dn2b,zb,dens2b);
+pcolorjw(dn3b,z3b,dens3b);
+colorbar; 
+datetick('x','mm/yy')
+ylabel('Depth (m)');
+xlabel('Time');
+title('Density')
+set(gca,'fontsize',14,'fontweight','bold')
+caxis([1024 1035]);
+set(gca,'xtick',datenum(2015,3:3:36,1),'xticklabel',datestr(datenum(2015,3:3:36,1),'mm/yy'),'layer','top');
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+if 0
+    set(gcf,'PaperPositionMode','auto');
+    print(gcf,'-dpng','-r300',[savedir 'PcolorFlankingB']);
+end 
+
+%% Plot a countour of temperature in time and pressure space 
+% not a good look at this data because this contour code doesn't handle gappy data well 
+figure;
+contour(repmat(dn1,1,12)',-press1,temp1)
+hold on 
+contour(repmat(dn2,1,12)',-press2,temp2)
+hold on  
+contour(repmat(dn3,1,8)',-press3,temp3)
+datetick('x','mm/yy')
+xlabel('time')
+ylabel('pressure')
+colorbar
+title('Temperature')
+
+%% Define colors for the next few plots 
+clrs(1:12,1:3)=nan;
+clrs(1,:)=hex2rgb('#7A6F9B'); %purple
+clrs(2,:)=hex2rgb('#C94277'); % pink 
+clrs(3,:)=hex2rgb('#D499B9'); % light pink 
+clrs(4,:)=hex2rgb('#0F5257'); % dark green 
+clrs(5,:)=hex2rgb('#20BF55'); % bright green 
+clrs(6,:)=hex2rgb('#01BAEF'); % bright blue 
+clrs(7,:)=hex2rgb('#DDE392'); % light green/yellow
+clrs(8,:)=hex2rgb('#537BBC'); % light blue 
+clrs(9,:)=hex2rgb('#FF8E5E'); % orange 
+clrs(10,:)=hex2rgb('#839788'); % light green 
+clrs(11,:)=hex2rgb('#9A6D38'); % brown 
+clrs(12,:)=hex2rgb('#0D1B2A'); % near black 
+
+%% Plot the pressure at Flanking A - whole timeseries 
+close all 
+
+figure('position',[5 291 1436 514])
+set(gca,'position',[0.0389972144846797  0.11   0.935933147632312      0.815]);
+for i= 1:12
+    h(i)=plot(dn1,press1(i,:),'-','color',clrs(i,:),'linewidth',2); hold on
+    plot(dn2,press2(i,:),'-','color',clrs(i,:),'linewidth',2); hold on
+    try
+        plot(dn3,press3(i,:),'-','color',clrs(i,:),'linewidth',2); hold on
+    catch
+    end
+end
+ylabel('Pressure (dbar)');
+xlabel('Time');
+title('Pressure at Flanking Mooring A')
+set(gca,'fontsize',14,'fontweight','bold')
+leg=legend(gca,h,num2str(z'));
+set(leg,'box','on','position',[0.86176880222825   ...
+    0.466787992476641        0.0515320334261838         0.380350194552529]);
+set(gca,'xtick',datenum(2015,3:3:36,1),'xticklabel',datestr(datenum(2015,3:3:36,1),'mm/yy'));
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+if 0
+    set(gcf,'PaperPositionMode','auto');
+    print(gcf,'-dpng','-r300',[savedir 'PressTimeseries_FlankingA_3yrs']);
+end 
+
+%% Plot the pressure at Flanking A - Zoom in on 11/15/15 - 1/15/16
+close all 
+
+figure('position',[5 291 1436 514])
+set(gca,'position',[0.0389972144846797  0.11   0.935933147632312      0.815]);
+for i= 1:12
+    h(i)=plot(dn1,press1(i,:),'-','color',clrs(i,:),'linewidth',2); hold on
+    plot(dn2,press2(i,:),'-','color',clrs(i,:),'linewidth',2); hold on
+    try
+        plot(dn3,press3(i,:),'-','color',clrs(i,:),'linewidth',2); hold on
+    catch
+    end
+end
+ylabel('Pressure (dbar)');
+xlabel('Time');
+title('Pressure at Flanking Mooring A')
+set(gca,'fontsize',14,'fontweight','bold')
+leg=legend(gca,h,num2str(z'));
+set(leg,'box','on','position',[0.86176880222825   ...
+    0.466787992476641        0.0515320334261838         0.380350194552529]);
+set(gca,'xtick',datenum(2015,11,1:14:300),'xticklabel',datestr(datenum(2015,11,1:14:300),'mm/dd/yy'));
+xaxis(datenum(2015,11,15),datenum(2016,1,15));
+yaxis(0, 300);
+
+if 0
+    set(gcf,'PaperPositionMode','auto');
+    print(gcf,'-dpng','-r300',[savedir 'PressTimeseries_FlankingA_3yrs']);
+end 
+
+%% Plot the pressure at Flanking B - whole timeseries 
+close all 
+
+figure('position',[5 291 1436 514])
+set(gca,'position',[0.0389972144846797  0.11   0.935933147632312      0.815]);
+for i= 1:12
+    h(i)=plot(dn1b,press1b(i,:),'-','color',clrs(i,:),'linewidth',2); hold on
+    plot(dn2b,press2b(i,:),'-','color',clrs(i,:),'linewidth',2); hold on
+    try
+        plot(dn3b,press3b(i,:),'-','color',clrs(i,:),'linewidth',2); hold on
+    catch
+    end
+end
+ylabel('Pressure (dbar)');
+xlabel('Time');
+title('Pressure at Flanking Mooring B')
+set(gca,'fontsize',14,'fontweight','bold')
+leg=legend(gca,h,num2str(z'));
+set(leg,'box','on','position',[0.86176880222825   ...
+    0.466787992476641        0.0515320334261838         0.380350194552529]);
+set(gca,'xtick',datenum(2015,3:3:36,1),'xticklabel',datestr(datenum(2015,3:3:36,1),'mm/yy'));
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+
+if 0
+    set(gcf,'PaperPositionMode','auto');
+    print(gcf,'-dpng','-r300',[savedir 'PressTimeseries_FlankingB_3yrs_clean']);
+end 
+
+%% Plot Stratification at Flanking A - 3 years 
+close all 
+
+figure('position',[5 291 1436 514])
+set(gca,'position',[0.0389972144846797  0.11   0.935933147632312      0.815]);
+for i= 1:12
+    h(i)=plot(dn1,temp1(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    plot(dn2,temp2(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    try
+        plot(dn3,temp3(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    catch
+    end
+    end
+ylabel('Temp');
+xlabel('Time');
+title('Temperature at Flanking Mooring A')
+set(gca,'fontsize',14,'fontweight','bold')
+leg=legend(gca,h,num2str(z'));
+set(leg,'box','on','position',[0.800487465180897   ...
+    0.118538965239286        0.0515320334261838         0.380350194552529]);
+set(gca,'xtick',datenum(2015,3:3:36,1),'xticklabel',datestr(datenum(2015,3:3:36,1),'mm/yy'));
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+yaxis(2,9.5);
+
+if 0
+    set(gcf,'PaperPositionMode','auto');
+    print(gcf,'-dpng','-r300',[savedir 'TempTimeseries_FlankingA_3yrs']);
+end 
+
+
+%% Plot Stratification at Flanking B - 3 years 
+close all 
+
+figure('position',[5 291 1436 514])
+set(gca,'position',[0.0389972144846797  0.11   0.935933147632312      0.815]);
+for i= 1:12
+    h(i)=plot(dn1b,temp1b(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    plot(dn2b,temp2b(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    try
+        plot(dn3b,temp3b(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    catch
+    end
+    end
+ylabel('Temp');
+xlabel('Time');
+title('Temperature at Flanking Mooring B')
+set(gca,'fontsize',14,'fontweight','bold')
+leg=legend(gca,h,num2str(z'));
+set(leg,'box','on','position',[ 0.787256267409309        ...
+    0.1127023893638      0.0515320334261838         0.380350194552529]);
+set(gca,'xtick',datenum(2015,3:3:36,1),'xticklabel',datestr(datenum(2015,3:3:36,1),'mm/yy'));
+xaxis(datenum(2015,3,1),datenum(2017,12,15));
+yaxis(2,9.5);
+
+if 0
+    set(gcf,'PaperPositionMode','auto');
+    print(gcf,'-dpng','-r300',[savedir 'TempTimeseries_FlankingB_3yrs']);
+end 
+
+%% Zoom in on Stratification at Flanking A and Compare with Tides  
+close all 
+
+figure('position',[5 291 1436 514])
+hax=tight_subplot(2,1,[0.15 0.1],[0.08 0.06],[0.06 0.02]);
+axes(hax(1));
+plot(tdn,tsl,'k','linewidth',2); hold on;
+plot(tdn1,tsl1,'r','linewidth',2);
+xaxis(datenum(2016,4,1),datenum(2016,7,1));
+set(gca,'fontsize',14,'fontweight','bold','xtick',datenum(2016,2,1:7:160),...
+    'xticklabel',datestr(datenum(2016,2,1:7:160),'mm/dd'));
+ylabel('Sea Level (mm)');
+title('Sea Level at Juan Fernandez (Chile)')
+
+
+axes(hax(2));
+for i= 1:12
+    h(i)=plot(dn1,temp1(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    plot(dn2,temp2(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    try
+        plot(dn3,temp3(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    catch
+    end
+    end
+% ylabel('Temp');
+xlabel('Time');
+title('Temperature at Flanking Mooring A')
+set(gca,'fontsize',14,'fontweight','bold')
+leg=legend(gca,h,num2str(z'));
+set(leg,'box','on','position',[0.0651114206126513   ...
+    0.0971381870291696        0.0515320334261839         0.380350194552529]);
+set(gca,'xtick',datenum(2016,2,1:7:160),'xticklabel',datestr(datenum(2016,2,1:7:160),'mm/dd'));
+xaxis(datenum(2016,4,1),datenum(2016,7,1));
+
+set(hax(1),'position',[  0.06         0.809338521400778                      0.92         0.138132295719844]);
+set(hax(2),'position',[ 0.06                      0.08                      0.92         0.626225680933852]);
+
+if 0
+    set(gcf,'PaperPositionMode','auto');
+    print(gcf,'-dpng','-r300',[savedir 'TidesTempTimeseries_FlankingA_2mos']);
+end 
+
+%% Zoom in on Stratification at Flanking A and Compare with Winds  
+close all 
+
+figure('position',[5 291 1436 514])
+hax=tight_subplot(2,1,[0.15 0.1],[0.08 0.06],[0.06 0.02]);
+axes(hax(1));
+plot(wdn1,wspd1,'.k'); hold on 
+plot(wdn2,wspd2,'.k'); 
+yaxis(0,22);
+ xaxis(datenum(2016,4,1),datenum(2016,7,1));
+set(gca,'fontsize',14,'fontweight','bold','xtick',datenum(2016,2,1:7:160),...
+    'xticklabel',datestr(datenum(2016,2,1:7:160),'mm/dd'));
+title('Wind Speed (m/s) at Apex Surface Mooring');
+
+axes(hax(2));
+for i= 1:12
+    h(i)=plot(dn1,temp1(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    plot(dn2,temp2(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    try
+        plot(dn3,temp3(i,:),'color',clrs(i,:),'linewidth',2); hold on
+    catch
+    end
+    end
+% ylabel('Temp');
+xlabel('Time');
+title('Temperature at Flanking Mooring A')
+set(gca,'fontsize',14,'fontweight','bold')
+leg=legend(gca,h,num2str(z'));
+set(leg,'box','on','position',[0.0651114206126513   ...
+    0.0971381870291696        0.0515320334261839         0.380350194552529]);
+set(gca,'xtick',datenum(2016,2,1:7:160),'xticklabel',datestr(datenum(2016,2,1:7:160),'mm/dd'));
+xaxis(datenum(2016,4,1),datenum(2016,7,1));
+
+set(hax(1),'position',[  0.06         0.809338521400778                      0.92         0.138132295719844]);
+set(hax(2),'position',[ 0.06                      0.08                      0.92         0.626225680933852]);
+
+if 0
+    set(gcf,'PaperPositionMode','auto');
+    print(gcf,'-dpng','-r300',[savedir 'WindTempTimeseries_FlankingA_2mos']);
+end 
+
+%% Comparing the temp at 130m at Flanking Moorings A and B 
+
+close all 
+figure('position',[5 291 1436 514])
+set(gca,'position',[0.0626740947075209  0.130350194552529   0.892061281337047      0.794649805447471]);
+i=5;
+h(1)=plot(dn1,temp1(i,:),'color',clrs(12,:),'linewidth',2); hold on
+h(2)=plot(dn1b,temp1b(i,:),'color',clrs(2,:),'linewidth',2);
+   
+ylabel('Temp');
+xlabel('Time');
+title('Temperatures at 130m depth - A and B Flanking Moorings')
+set(gca,'fontsize',20,'fontweight','bold')
+
+set(gca,'xtick',datenum(2015,1,1:7:2400),'xticklabel',datestr(datenum(2015,1,1:7:2400),'mm/dd/yy'));
+xaxis(datenum(2015,4,1),datenum(2015,5,1));
+% xaxis(datenum(2015,4,1),datenum(2015,4,15));
+
+leg=legend([h(1) h(2)],['A';'B']);
+
+if 0
+    set(gcf,'PaperPositionMode','auto');
+    print(gcf,'-dpng','-r300',[savedir 'AvsB_1mo']);
+end 
+
+%% Calculate the distance betwen Flanking Moorings A and B 
+disp(['Distance between Flanking Moorings A and B = ' ...
+    num2str(sw_dist([-54.104, -54.08],[-89.654, -88.932],'km'),4)  ' km']);
+
+##### SOURCE END #####
+--></body></html>
