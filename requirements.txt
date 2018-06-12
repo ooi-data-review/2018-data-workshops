@@ -9,3 +9,4 @@ matplotlib
 bokeh
 toolz
 cmocean
+obspy
