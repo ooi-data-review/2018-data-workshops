@@ -29,3 +29,5 @@ To run these notebooks on the MyBinder cloud, click here [![Binder](https://mybi
 [Chris Albon](https://chrisalbon.com/)  
 
 [Generic Mapping Tools in Python](https://github.com/GenericMappingTools/gmt-python)  
+
+[PyCamHD](https://github.com/tjcrone/pycamhd)
