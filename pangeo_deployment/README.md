@@ -1,1 +1,1 @@
-### Folder containing Docker Image for Pangeo Deployement
+### Docker Image for Pangeo Deployement
