@@ -3,3 +3,5 @@
 *.raw
 *.h5
 minute_mean_data/
+.clientid
+.clientsecret

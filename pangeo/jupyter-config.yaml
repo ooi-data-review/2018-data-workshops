@@ -1,0 +1,36 @@
+singleuser:
+  image:
+    name: tjcrone/pangeo-notebook
+    tag: 97b9c75
+  cmd: ['start-singleuser.sh']
+  cpu:
+    guarantee: 1
+  memory:
+    guarantee: 4G
+
+hub:
+  extraConfig: |
+    c.KubeSpawner.singleuser_service_account = 'daskkubernetes'
+    c.KubeSpawner.start_timeout = 60 * 10 # 10-minute timeout for Azure
+    c.Spawner.default_url = '/lab'
+    c.Spawner.cmd = ['jupyter-labhub']
+    from kubernetes import client
+    def modify_pod_hook(spawner, pod):
+        pod.spec.containers[0].security_context = client.V1SecurityContext(
+            privileged=True,
+            capabilities=client.V1Capabilities(
+                add=['SYS_ADMIN']
+            )
+        )
+        return pod
+    c.KubeSpawner.modify_pod_hook = modify_pod_hook
+
+prePuller:
+  hook:
+    enabled: false
+
+cull:
+  enabled: true
+  users: false
+  timeout: 1200
+  every: 600
