@@ -65,7 +65,7 @@ sed -i '' -e "s/^    clientSecret.*/    clientSecret: \"$SECRET\"/" secret-confi
 
 # install jupyterhub on the cluster
 echo "Installing pangeo."
-helm install jupyterhub/jupyterhub --version=v0.7-e2757f0 --name=pangeo --namespace=pangeo --timeout=600 -f secret-config.yaml -f jupyter-config.yaml
+helm install jupyterhub/jupyterhub --version=v0.7-d540c9f --name=pangeo --namespace=pangeo --timeout=600 -f secret-config.yaml -f jupyter-config.yaml
 
 # create the kubernetesdask service account and role bindings
 echo "Installing service account for dask-kubernetes."
