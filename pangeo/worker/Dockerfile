@@ -10,6 +10,7 @@ RUN chmod +x /usr/local/bin/dumb-init
 
 RUN conda install --yes -c conda-forge \
     av=0.4.0 \
+    cmocean \
     cytoolz \
     dask=0.17.2 \
     distributed=1.21.4 \
@@ -23,6 +24,7 @@ RUN conda install --yes -c conda-forge \
     numba \
     numcodecs \
     numpy \
+    obspy \
     pandas \
     pytables \
     python-blosc \

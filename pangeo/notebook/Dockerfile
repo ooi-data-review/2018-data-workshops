@@ -18,6 +18,7 @@ RUN pip install --upgrade pip
 RUN conda install --yes -c ioam -c conda-forge \
     av=0.4.0 \
     bokeh=0.12.14 \
+    cmocean \
     cytoolz \
     datashader \
     dask=0.17.2 \
@@ -37,6 +38,7 @@ RUN conda install --yes -c ioam -c conda-forge \
     numba \
     numcodecs \
     numpy \
+    obspy \
     pandas \
     pytables \
     python-blosc \
