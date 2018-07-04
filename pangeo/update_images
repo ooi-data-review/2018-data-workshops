@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# move into pangeo directory
+AZURE_DIR='/Users/tjc/research/ooi/2018-data-workshops/pangeo'
+cd $AZURE_DIR
+
+# check git status
+git diff --exit-code > /dev/null
+
+if [ $? -eq 0 ]; then
+  set -e
+
+  # get commit hash for tag
+  TAG=`git rev-parse --short HEAD`
+
+  # build worker
+  cd "$AZURE_DIR/worker"
+  NAME='ooidatateam/pangeo-worker'
+  docker build -t "$NAME:$TAG" .
+
+  # push worker
+  docker push "$NAME:$TAG"
+
+  # update worker-template tag
+  cd "$AZURE_DIR/notebook"
+  sed -i '' "s/    image.*/    image: ooidatateam\/pangeo-worker:${TAG}/" worker-template.yaml
+
+  # build notebook
+  NAME='ooidatateam/pangeo-notebook'
+  docker build -t "$NAME:$TAG" .
+
+  # push notebook
+  docker push "$NAME:$TAG"
+
+  # update jupyter-config
+  cd $AZURE_DIR
+  sed -i '' "s/    tag.*/    tag: ${TAG}/" jupyter-config.yaml
+
+else
+    printf "\nPlease stash or commit your changes before updating the Pangeo images.\n\n"
+fi

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e
+
+# replace secrets
+TOKEN=`openssl rand -hex 32`
+sed -i '' -e "s/^  secretToken.*/  secretToken: \"$TOKEN\"/" secret-config.yaml
+ID=`cat .clientid`
+sed -i '' -e "s/^    clientId.*/    clientId: \"$ID\"/" secret-config.yaml
+SECRET=`cat .clientsecret`
+sed -i '' -e "s/^    clientSecret.*/    clientSecret: \"$SECRET\"/" secret-config.yaml
+
+# install jupyterhub on the cluster
+echo "Installing pangeo."
+helm install jupyterhub/jupyterhub --version=v0.7-d540c9f --name=pangeo --namespace=pangeo --timeout=600 -f secret-config.yaml -f jupyter-config.yaml
+
+# unreplace secrets
+sed -i '' -e "s/^  secretToken.*/  secretToken: SECRET/" secret-config.yaml
+sed -i '' -e "s/^    clientId.*/    clientId: ID/" secret-config.yaml
+sed -i '' -e "s/^    clientSecret.*/    clientSecret: SECRET/" secret-config.yaml

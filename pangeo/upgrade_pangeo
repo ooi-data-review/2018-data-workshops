@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+# replace secrets
+TOKEN=`openssl rand -hex 32`
+sed -i '' -e "s/^  secretToken.*/  secretToken: \"$TOKEN\"/" secret-config.yaml
+ID=`cat .clientid`
+sed -i '' -e "s/^    clientId.*/    clientId: \"$ID\"/" secret-config.yaml
+SECRET=`cat .clientsecret`
+sed -i '' -e "s/^    clientSecret.*/    clientSecret: \"$SECRET\"/" secret-config.yaml
+
+# upgrade pangeo
+helm upgrade --force --recreate-pods --timeout=600 pangeo jupyterhub/jupyterhub --version=v0.7-d540c9f -f jupyter-config.yaml -f secret-config.yaml
+
+# unreplace secrets
+sed -i '' -e "s/^  secretToken.*/  secretToken: SECRET/" secret-config.yaml
+sed -i '' -e "s/^    clientId.*/    clientId: ID/" secret-config.yaml
+sed -i '' -e "s/^    clientSecret.*/    clientSecret: SECRET/" secret-config.yaml
