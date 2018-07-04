@@ -7,8 +7,12 @@ singleuser:
     guarantee: 1
   memory:
     guarantee: 4G
+  nodeSelector:
+    cloud.google.com/gke-nodepool: default-pool
 
 hub:
+  nodeSelector:
+    cloud.google.com/gke-nodepool: default-pool
   extraConfig: |
     c.KubeSpawner.singleuser_service_account = 'daskkubernetes'
     c.KubeSpawner.start_timeout = 60 * 10 # 10-minute timeout for Azure
@@ -25,6 +29,10 @@ hub:
         return pod
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
     c.KubeSpawner.environment = {}
+
+proxy:
+  nodeSelector:
+    cloud.google.com/gke-nodepool: default-pool
 
 prePuller:
   hook:
