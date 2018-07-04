@@ -22,8 +22,8 @@ spec:
         value: pangeo-data
     resources:
       limits:
-        cpu: "1"
-        memory: 4G
+#        cpu: "1"
+#        memory: 4G
       requests:
-        cpu: "0.9"
-        memory: 4G
+        cpu: "0.8"
+        memory: 2.8G
