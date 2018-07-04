@@ -24,6 +24,7 @@ hub:
         )
         return pod
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
+    c.KubeSpawner.environment = {}
 
 prePuller:
   hook:
