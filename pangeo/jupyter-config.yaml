@@ -4,11 +4,11 @@ singleuser:
     tag: fdf7afb
   cmd: ['start-singleuser.sh']
   cpu:
-    guarantee: 1
+    guarantee: 2
   memory:
-    guarantee: 4G
+    guarantee: 6G
   nodeSelector:
-    cloud.google.com/gke-nodepool: default-pool
+    cloud.google.com/gke-nodepool: notebook-pool
 
 hub:
   nodeSelector:
