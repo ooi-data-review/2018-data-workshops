@@ -1,7 +1,7 @@
 singleuser:
   image:
     name: ooidatateam/pangeo-notebook
-    tag: fdf7afb
+    tag: 24a12bf
   cmd: ['start-singleuser.sh']
   cpu:
     guarantee: 2
