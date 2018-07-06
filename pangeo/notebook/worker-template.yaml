@@ -11,7 +11,7 @@ spec:
       - 4GB
       - --death-timeout
       - '60'
-    image: ooidatateam/pangeo-worker:e8f55c2
+    image: ooidatateam/pangeo-worker:39cfe67
     name: dask-worker
     securityContext:
       capabilities:
