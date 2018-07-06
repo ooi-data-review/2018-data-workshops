@@ -14,7 +14,9 @@ RUN conda install --yes -c conda-forge \
     cytoolz \
     dask=0.17.2 \
     distributed=1.21.4 \
+    erddapy \
     fastparquet \
+    folium \
     git \
     google-cloud-storage \
     imagehash \
@@ -26,8 +28,11 @@ RUN conda install --yes -c conda-forge \
     numpy \
     obspy \
     pandas \
+    pydrive \
     pytables \
     python-blosc \
+    seawater \
+    seaborn \
     scikit-image \
     scipy \
     xarray \

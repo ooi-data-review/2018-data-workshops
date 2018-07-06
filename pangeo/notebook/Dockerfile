@@ -2,6 +2,9 @@ FROM jupyter/base-notebook
 
 USER root
 
+RUN apt-get update \
+  && apt-get install -yq gpg
+
 RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main" > /etc/apt/sources.list.d/google-cloud-sdk.list
 
 RUN wget https://packages.cloud.google.com/apt/doc/apt-key.gpg -q -O - | sudo apt-key add -
@@ -23,7 +26,9 @@ RUN conda install --yes -c ioam -c conda-forge \
     datashader \
     dask=0.17.2 \
     distributed=1.21.4 \
+    erddapy \
     fastparquet \
+    folium \
     google-cloud-storage \
     imagehash \
     ipywidgets \
@@ -40,10 +45,13 @@ RUN conda install --yes -c ioam -c conda-forge \
     numpy \
     obspy \
     pandas \
+    pydrive \
     pytables \
     python-blosc \
     scipy \
     scikit-image \
+    seawater \
+    seaborn \
     tornado \
     xarray \
     zict \
