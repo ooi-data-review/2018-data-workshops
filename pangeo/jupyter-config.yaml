@@ -1,14 +1,14 @@
 singleuser:
   image:
     name: ooidatateam/pangeo-notebook
-    tag: 39cfe67
+    tag: 6e22c30
   cmd: ['start-singleuser.sh']
   memory:
     guarantee: 16G
   nodeSelector:
     cloud.google.com/gke-nodepool: notebook-highmem
   storage:
-    capacity: 100Gi
+    capacity: 120Gi
 
 hub:
   nodeSelector:
