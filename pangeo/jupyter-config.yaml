@@ -3,12 +3,12 @@ singleuser:
     name: ooidatateam/pangeo-notebook
     tag: 39cfe67
   cmd: ['start-singleuser.sh']
-  cpu:
-    guarantee: 2
   memory:
-    guarantee: 6G
+    guarantee: 16G
   nodeSelector:
-    cloud.google.com/gke-nodepool: notebook-pool
+    cloud.google.com/gke-nodepool: notebook-highmem
+  storage:
+    capacity: 100Gi
 
 hub:
   nodeSelector:
