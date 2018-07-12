@@ -5,3 +5,4 @@
 minute_mean_data/
 .clientid
 .clientsecret
+*.nc
