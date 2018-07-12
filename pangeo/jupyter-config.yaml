@@ -8,7 +8,7 @@ singleuser:
   nodeSelector:
     cloud.google.com/gke-nodepool: notebook-highmem
   storage:
-    capacity: 120Gi
+    capacity: 80Gi
 
 hub:
   nodeSelector:
