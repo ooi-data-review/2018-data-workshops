@@ -1,1 +1,1 @@
-# Geology Examples and Reports
+# OOI Early Career Data Workshop - Geology 
