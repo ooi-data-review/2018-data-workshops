@@ -9,8 +9,9 @@ During the workshop, a number of example scripts were provided to demonstrate ho
 As part of the workshop, each participant created a *Data Validation Report* analyzing the quality of one or more OOI instruments.
 
 * [Melanie Abecassis, Geoffrey Dilly, and Iain R. Caldwell](reports/Abecassis_Dilly_Caldwell.ipynb) - Internal and External Cross-Validation of OOI Coastal Endurance Sea Surface Temperatures from Surface Moorings
-* [Justine Whitaker and Yvonne Barkley](reports/Barkley_Whitaker.ipynb) - Coastal Pioneer CTD Profilers (CTDPFK000) Data Quality Report
-* [Robert Levine and Adrienne Copeland](reports/Copeland_Levine.ipynb) - Coastal Endurance (CE05MOAS) Glider GL311 and GL383 Data Quality Report
-* [Lis Henderson](reports/Henderson.ipynb) - Coastal Pioneer Array Profilers Data Validation Report
+* Kristen Fogaren ([report](reports/Fogaren.pdf), [matlab](reports/Fogaren.mlx) - Oregon Shelf Benthic Package CTD Data Quality Report
 * [Kupchik, Matthew](reports/Kupchik.ipynb) - Data Validation for Argentine Basin Global Array Dissolved Oxygen Data
+* [Lis Henderson](reports/Henderson.ipynb) - Coastal Pioneer Array Profilers Data Validation Report
+* [Robert Levine and Adrienne Copeland](reports/Copeland_Levine.ipynb) - Coastal Endurance (CE05MOAS) Glider GL311 and GL383 Data Quality Report
+* [Justine Whitaker and Yvonne Barkley](reports/Barkley_Whitaker.ipynb) - Coastal Pioneer CTD Profilers (CTDPFK000) Data Quality Report
 * [Samantha Zeman](reports/Zeman.ipynb) - Oregon Shelf and Oregon Offshore CTD and DO Comparisons with Cruise Data
