@@ -4,9 +4,9 @@ singleuser:
     tag: 6e22c30
   cmd: ['start-singleuser.sh']
   memory:
-    guarantee: 16G
+    guarantee: 4G
   nodeSelector:
-    cloud.google.com/gke-nodepool: notebook-highmem
+    cloud.google.com/gke-nodepool: notebook-pool
   storage:
     capacity: 80Gi
 
@@ -36,7 +36,7 @@ proxy:
 
 prePuller:
   hook:
-    enabled: false
+    enabled: true
 
 cull:
   enabled: true
