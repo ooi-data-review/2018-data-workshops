@@ -12,8 +12,8 @@ During the workshop, a number of example scripts were provided to demonstrate ho
 * [Haley Cabaniss](reports/Cabaniss.ipynb) - Addressing Spikes in BOTPT Instruments Preceding Junction Box Changes during July 2018 Cruise
 * Lauren Ferris ([report](reports/Ferris.ipynb), [HTML version](reports/Ferris.html)) - Data quality assessment for the Ocean Observatories Initiative (OOI) Global Station Papa Apex Profiler Mooring (GP02HYPM)
 * [Pichawut Manopkawee](reports/Manopkawee.ipynb) - Coastal Endurance Washington-Oregon Shelf Surface Mooring Data Comparison Report
-* Jazlyn Natalie and Dax Soule
-* Christopher Russoniello
+* [Jazlyn Natalie and Dax Soule](reports/Natalie_Soule.ipynb)
+* [Christopher Russoniello](reports/Russoniello/Russoniello.ipynb)
 * Drew Syverson
 * [Alexandros Tasianas](reports/Tasianas.ipynb) - Coastal Endurance Oregon Inshore Surface Mooring - Seafloor Multi-Function Node (MFN) - Velocity Profiler (600kHz) Data Quality Report
 * [Kianoosh Yousefi](reports/Yousefi.ipynb) - Coastal Pioneer Central Inshore Profiler (CP02PMCI) ADCP Data Quality Report
