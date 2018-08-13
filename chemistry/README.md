@@ -17,5 +17,5 @@ During the workshop, a number of example scripts were provided to demonstrate ho
 * [Yuanji Sun](reports/Sun.ipynb) - Global Station Papa Flanking Subsurface Mooring A & B (GP03FLMA & GP03FLMB) Data Validation Report
 * [Elizabeth Suter](reports/Suter.ipynb) - Evaluation of OOI Nitrate Sensors
 * [Man-Yin Tsang](reports/Tsang.pdf) - Comparison between dissolved chemical contents from samples collected by the osmosis-based water samplers and the benthic fluid flow CAT meter
-* Yuanyuan Xu ([report](reports/Xy.ipynb), [presentation](reports/Xu.pptx)) - Coastal Pioneer Coastal Central Inshore Profiler (CP02PMCI) Data Quality Report
+* Yuanyuan Xu ([report](reports/Xu.ipynb), [presentation](reports/Xu.pptx)) - Coastal Pioneer Coastal Central Inshore Profiler (CP02PMCI) Data Quality Report
 * Bo Yang ([report](reports/Yang.docx), [presentation](reports/Yang.pptx)) - Global Station Papa Array Flanking Subsurface Mooring A & B Oxygen (O2) Data Quality Report
